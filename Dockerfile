@@ -18,4 +18,9 @@ RUN locale-gen en_US.UTF-8 en_GB.UTF-8 de_DE.UTF-8 es_ES.UTF-8 fr_FR.UTF-8 it_IT
 
 RUN apt-get -y install software-properties-common && add-apt-repository -y ppa:ondrej/php && apt-get update &&  apt-get -y install php7.3 && apt-get install -y php7.3-cli php7.3-fpm php7.3-bcmath php7.3-curl php7.3-gd php7.3-intl php7.3-json php7.3-mbstring php7.3-mysql php7.3-opcache php7.3-sqlite3 php7.3-xml php7.3-zip
 
+# Install kubectl
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
+
+
 ENTRYPOINT ["/entrypoint.sh"]
