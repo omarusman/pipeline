@@ -25,5 +25,7 @@ RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 # Install aws-iam-authenticator
 RUN curl -o aws-iam-authenticator curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.13.7/2019-06-11/bin/linux/amd64/aws-iam-authenticator && chmod +x ./aws-iam-authenticator && mv ./aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
 
+# Install dump-env. This will be used for replacing/managing .env files.
+RUN pip3 install dump-env
 
 ENTRYPOINT ["/entrypoint.sh"]
