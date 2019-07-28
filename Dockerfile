@@ -38,4 +38,6 @@ RUN apt-get install -y wget && \
     chmod +x phpunit-6.5.phar && \
     mv phpunit-6.5.phar /usr/local/bin/phpunit
 
+RUN apt-get install -y gettext
+
 ENTRYPOINT ["/entrypoint.sh"]
