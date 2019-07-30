@@ -25,17 +25,7 @@ RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 # Install aws-iam-authenticator
 RUN curl -o aws-iam-authenticator curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.13.7/2019-06-11/bin/linux/amd64/aws-iam-authenticator && chmod +x ./aws-iam-authenticator && mv ./aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
 
-# Install dump-env. This will be used for replacing/managing .env files.
-RUN pip3 install dump-env
-
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
-    php -r "unlink('composer-setup.php');"
-
-RUN apt-get install -y wget && \
-    wget https://phar.phpunit.de/phpunit-6.5.phar && \
-    chmod +x phpunit-6.5.phar && \
-    mv phpunit-6.5.phar /usr/local/bin/phpunit
+RUN apt-get install -y wget
+RUN wget https://getcomposer.org/download/1.8.6/composer.phar && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
 ENTRYPOINT ["/entrypoint.sh"]
