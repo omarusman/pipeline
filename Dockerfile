@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y python3-pip
+RUN apt-get update && apt-get install -y python3-pip gettext mysql-client
 RUN apt-get remove docker docker-engine docker.io && apt install -y docker.io
 
 RUN pip3 install -U awscli
@@ -37,7 +37,5 @@ RUN apt-get install -y wget && \
     wget https://phar.phpunit.de/phpunit-6.5.phar && \
     chmod +x phpunit-6.5.phar && \
     mv phpunit-6.5.phar /usr/local/bin/phpunit
-
-RUN apt-get install -y gettext
 
 ENTRYPOINT ["/entrypoint.sh"]
