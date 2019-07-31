@@ -28,6 +28,6 @@ RUN curl -o aws-iam-authenticator curl -o aws-iam-authenticator https://amazon-e
 RUN apt-get install -y wget
 RUN wget https://getcomposer.org/download/1.8.6/composer.phar && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
-RUN apt-get install -y npm && npm install -g pm2
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -y nodejs
 
 ENTRYPOINT ["/entrypoint.sh"]
